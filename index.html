@@ -280,7 +280,7 @@ function editDistance(s1, s2) {
                 recognition.onresult = function(event) {
                     var transcript = event.results[0][0].transcript;
                     var confidence = event.results[0][0].confidence;
-                    var percentage = similarity(transcript,"This is a beautiful page.");
+                    var percentage = similarity(transcript,"Hello Welcome to six phrase my slate.");
                     output.innerHTML = "<b>Text:</b> " + transcript + "<br/> <b>Percentage Match:</b> " + (percentage*100)+"%";
                     document.getElementById("micButton").checked = false;
 					output.classList.remove("hide");

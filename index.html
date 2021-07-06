@@ -213,7 +213,9 @@ body {
 			
         <p> <span id="action"></span></p>
         <div id="output" class="hide"></div>
+
 		<script>
+      
   function similarity(s1, s2) {
   var longer = s1;
   var shorter = s2;
@@ -280,8 +282,21 @@ function editDistance(s1, s2) {
                 recognition.onresult = function(event) {
                     var transcript = event.results[0][0].transcript;
                     var confidence = event.results[0][0].confidence;
-                    var percentage = similarity(transcript,"Hello Welcome to six phrase my slate.");
-                    output.innerHTML = "<b>Text:</b> " + transcript + "<br/> <b>Percentage Match:</b> " + (percentage*100)+"%";
+                    var percentage = similarity(transcript,"It happened by mistake.");
+                    percentage = parseInt(percentage*100);
+                    if(percentage>=95)
+                    {
+                      var result = "You have pronunced it perfectly ( Passed )";
+                    }
+                    else if(percentage>=80 && percentage<=95)
+                    {
+                      var result = "You are almost there , but give it a better try ( Passed )";
+                    }
+                    else
+                    {
+                      var result = "Your pronunciation could be improved . Try again ( Failed )"
+                    }
+                    output.innerHTML = "<b>Text:</b> " + transcript + "<br/> <b>Percentage Match:</b> " + (percentage)+"%" + "<br/> <b>Status:</b> " + (result);
                     document.getElementById("micButton").checked = false;
 					output.classList.remove("hide");
                 };
